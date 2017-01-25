@@ -101,6 +101,7 @@ A basis of a vector space &Nu; is a linearly independent set of vectors whose sp
 ### 2.6 What is a Norm? 
 
 A norm just refers to the magnitude of a vector, and is denoted with ||u||. With numpy and scipy, we can do calculate the norm as follows: 
+
 ``` python
 import numpy as np
 from scipy import linalg
@@ -108,6 +109,9 @@ from scipy import linalg
 v = np.array([1,2])
 linalg.norm(v)
 ```
+The actual formula looks like: 
+
+![alt text](https://github.com/lesley2958/lin-alg/blob/master/det.png?raw=true "Logo Title Text 1")
 
 ## 3.0 Matrices
 
@@ -165,6 +169,8 @@ matrix_prod = matrix1 * matrix2
 ```
 
 #### 3.2.3 Determinant
+
+![alt text](https://github.com/lesley2958/lin-alg/blob/master/det.png?raw=true "Logo Title Text 1")
 
 ``` python
 det = np.linalg.det(matrix1)
