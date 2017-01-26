@@ -6,28 +6,27 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958).
 ## Table of Contents
 
 - [0.0 Setup](#00-setup)
-	+ [0.1 R and R Studio](#01-r-and-r-studio)
-	+ [0.2 Packages](#02-packages)
-- [1.0 Background](#10-background)
-	+ [1.1 Machine Learning](#11-Machine Learning)
-	+ [1.2 Data](#12-data)
-	+ [1.3 Overfitting vs Underfitting](#13-overfitting-vs-underfitting)
-	+ [1.4 Glossary](#14-glossary)
-		* [1.4.1 Factors](#141-factors)
-		* [1.4.2 Corpus](#142-corpus)
-		* [1.4.3 Bias](#143-bias)
-		* [1.4.4 Variance](#144-variance)
-- [2.0 Data Preparation](#30-data-preparation)
-	+ [2.1 dplyr](#31-dplyr)
-	+ [2.2 Geopandas](#32-geopandas)
-- [3.0 Exploratory Analysis](#30-exploratory-analysis)
-- [4.0 Data Visualization](#50-data-visualization)
-- [5.0 Machine Learning & Prediction](#50-machine-learning--prediction)
-	+ [5.1 Random Forests](#51-random-forests)
-	+ [5.2 Natural Language Processing](#52-natural-language-processing)
-		* [5.2.1 ANLP](#521-anlp)
-	+ [5.3 K Means Clustering](#53-k-means-clustering)
-- [6.0 Final Exercise]($60-final-exercise)
+	+ [0.1 Python and Pip](#01-python-and-pip)
+	+ [0.2 Libraries](#02-libraries)
+- [1.0 Introduction](#10-introduction)
+- [2.0 Vectors](#30-vectors)
+	+ [2.1 What is a vector?](#21-what-is-a-vector)
+	+ [2.2 What is a vector space?](#22-what-is-a-vector-space)
+	+ [2.3 What is a subspace?](#23-what-is-a-subspace)
+	+ [2.4 What is linear independence?](#24-what-is-linear-independence)
+	+ [2.5 What is a basis?](#25-what-is-a-basis)
+	+ [2.6 What is a Norm?](#26-what-is-a-norm)
+- [3.0 Matrices](#30-matrices)
+	+ [3.1 Identity Matrix](#31-identity-matrix)
+	+ [3.2 Matrix Operations](#32-matrix-operations)
+		* [3.2.1 Addition](#321-addition)
+		* [3.2.2 Multiplication](#322-multiplication)
+		* [3.2.3 Determinant](#323-determinant)
+		* [3.2.4 Inverse](#324-inverse)
+		* [3.2.5 Eigenvalues](#325-eigenvalues)
+		* [3.2.6 Solving Systems of Equations](#326-solving-systems-of-equations)
+	+ [3.3 Underdetermined Matrices](#33-underdetermines-matrices)
+	+ [3.5 Kernels](#35-kernels)
 - [7.0 Final Words](#60-final-words)
 	+ [7.1 Resources](#61-resources)
 	+ [7.2 More!](#72-more)
@@ -42,7 +41,7 @@ This guide was written in Python 3.5.
 Download [Python](https://www.python.org/downloads/) and [Pip](https://pip.pypa.io/en/stable/installing/).
 
 
-### 0.2 Packages
+### 0.2 Libraries
 
 
 ```
@@ -54,7 +53,7 @@ pip3 install numpy
 
 Linear Algebra is a branch of mathematics that lets you concisely describe coordinates and interactions of planes in higher dimensions and perform operations on them. 
 
-Think of it as an extension of algebra into an arbitrary number of dimensions. Linear Algebra is about working on linear systems of equations (linear regression is an example: y = Ax). Rather than working with scalars, we start working with matrices and vectors (vectors are really just a special type of matrix). Vectors are the core of linear algebra studies. 
+Think of it as an extension of algebra into an arbitrary number of dimensions. Linear Algebra is about working on linear systems of equations. Rather than working with scalars, we start working with matrices and vectors. Vectors are the core of linear algebra studies. 
 
 
 ## 2.0 Vectors
@@ -89,10 +88,17 @@ A vector space, &Nu; is a set that contains all linear combinations of its eleme
 ### 2.3 What is a subspace?
 
 A subspace is a subset of a vector space that is also a vector space. 
+ 
 
-### 2.4 What is a linear independence? 
+### 2.4 What is linear independence? 
 
-A vector u is linear independent of a set of vectors if it does <b>not</b> lie in their <b>span</b>. A set of vectors is linearly independent if every vector is linearly independent of the rest. 
+A collection of vectors v<sub>1</sub>,...,v<sub>n</sub> is said to be linearly independent if:
+
+c<sub>1</sub>v<sub>1</sub> + ... + c<sub>n</sub>v<sub>n</sub> = 0
+
+c<sub>1</sub> = ... = c<sub>n</sub> = 0
+
+In other words, any linear combination of the vectors that results in a zero vector is trivial.
 
 ### 2.5 What is a basis? 
 
@@ -111,7 +117,7 @@ linalg.norm(v)
 ```
 The actual formula looks like: 
 
-![alt text](https://github.com/lesley2958/lin-alg/blob/master/det.png?raw=true "Logo Title Text 1")
+![alt text](https://github.com/lesley2958/lin-alg/blob/master/norm.png?raw=true "Logo Title Text 1")
 
 ## 3.0 Matrices
 
@@ -137,7 +143,6 @@ A Diagonal Matrix is an n x n matrix with 1s on the diagonal from the top left t
 [[ 1., 0., 0.],
 [ 0., 1., 0.],
 [ 0., 0., 1.]]
-
 ```
 We can generate diagonal matrices with the `eye()` function in Python: 
 
@@ -152,6 +157,7 @@ When a matrix is multiplied by its inverse, the result is the identity matrix. I
 #### 3.2.1 Addition
 
 Matrix addition works very similarlty to normal addition. You simply add the corresponding spots together. 
+
 ``` python
 matrix_sum = matrix1 + matrix2
 ```
@@ -161,34 +167,44 @@ matrix([[-1,  6],
         [ 3, -2]])
 ```
 
-#### 3.2.2 Multiplication
+Visually, this looks like:
 
+![alt text](https://github.com/lesley2958/lin-alg/blob/master/vector%20addition.png?raw=true "Logo Title Text 1")
+
+#### 3.2.2 Multiplication
 
 ``` python
 matrix_prod = matrix1 * matrix2
 ```
 
-#### 3.2.3 Determinant
+#### 3.2.3 Trace and Determinant
+
+The trace of a matrix A is the sum of its diagonal elements. It's important because it's an invariant of a matrix under change of basis and it defines a matrix norm. 
+
+The determinant of a matrix is defined to be the alternating sum of permutations of the elements of a matrix. The formula is as follows:
 
 ![alt text](https://github.com/lesley2958/lin-alg/blob/master/det.png?raw=true "Logo Title Text 1")
+
+In python, you can use the following function: 
 
 ``` python
 det = np.linalg.det(matrix1)
 ```
+Note that an n×n matrix Ais invertible &iff; det(A) &ne; 0.
 
-#### 3.2.3 Inverse
+#### 3.2.4 Inverse
 
 ``` python
 inverse = np.linalg.inv(matrix1)
 ```
 
-#### 3.2.4 Eigenvalues
+#### 3.2.5 Eigenvalues
 
 ``` python
 eigvals = np.linalg.eigvals(matrix)
 ```
 
-#### 3.2.5 Solving Systems of Equations
+#### 3.2.6 Solving Systems of Equations
 
 Consider a set of m linear equations in n unknowns:
 
@@ -198,11 +214,19 @@ Ax = b
 ```
 This reduces the problem to a matrix equation, and now solving the system amounts to finding A<sub>−1</sub>.
 
-### 3.3 Underdetermined Matrices
+### 3.3 Under vs Overdetermined Matrices
 
-When `m<n`, the linear system is said to be <b>underdetermined</b>, e.g. there are fewer equations than unknowns. In this case, there are either no solutions or infinite solutions and a unique solution is not possible.
+When `m < n`, the linear system is said to be <b>underdetermined</b>, e.g. there are fewer equations than unknowns. In this case, there are either no solutions or infinite solutions and a unique solution is not possible.
 
-### 3.5 Kernels
+When `m > n`, the system may be <b>overdetermined</b>. In other words, there are more equations than unknowns. They system could be inconsistent, or some of the equations could be redundant. 
+
+### 3.4 Column Space 
+
+### 3.5 Rank
+
+The rank of a matrix A is the dimension of its column space - and - the dimension of its row space. These are equal for any matrix. Rank can be thought of as a measure of non-degeneracy of a system of linear equations, in that it is the dimension of the image of the linear transformation determined by A.
+
+### 3.6 Kernels
 
 The kernel of a matrix A is the dimension of the space mapped to zero under the linear transformation that A represents. The dimension of the kernel of a linear transformation is called the nullity.
 
