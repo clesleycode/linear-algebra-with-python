@@ -43,11 +43,34 @@ Download [Python](https://www.python.org/downloads/) and [Pip](https://pip.pypa.
 
 ### 0.2 Libraries
 
+We'll be working with numpy and scipy, so make sure to install them with pip: 
 
 ```
 pip3 install scipy
 pip3 install numpy
 ```
+
+### 0.3 Virtual Environment
+
+If you'd like to work in a virtual environment, you can set it up as follows: 
+```
+pip3 install virtualenv
+virtualenv your_env
+```
+And then launch it with: 
+```
+source your_env/bin/activate
+```
+
+To execute the visualizations in matplotlib, do the following:
+
+```
+cd ~/.matplotlib
+nano matplotlibrc
+```
+And then, write `backend: TkAgg` in the file. Now you should be set up with your virtual environment!
+
+Cool, now we're ready to start! 
 
 ## 1.0 Introduction
 
@@ -226,7 +249,7 @@ Let A be an n x n matrix. The number &lambda; is an eigenvalue of A if there exi
 
 Av = &lambda;v
 
-In this case, vector v is called an eigenvector of A corresponding to &lamda;. You can use numpy to calculate the eigenvectors of a matrix: 
+In this case, vector v is called an eigenvector of A corresponding to &lambda;. You can use numpy to calculate the eigenvectors of a matrix: 
 
 ``` python
 eigvals = np.linalg.eigvals(matrix)
