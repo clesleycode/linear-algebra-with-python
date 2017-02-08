@@ -43,7 +43,7 @@ Download [Python](https://www.python.org/downloads/) and [Pip](https://pip.pypa.
 
 ### 0.2 Libraries
 
-We'll be working with numpy and scipy, so make sure to install them with pip: 
+We'll be working with numpy and scipy, so make sure to install them. Pull up your terminal and insert the following: 
 
 ```
 pip3 install scipy
@@ -66,7 +66,7 @@ To execute the visualizations in matplotlib, do the following:
 
 ```
 cd ~/.matplotlib
-nano matplotlibrc
+vim matplotlibrc
 ```
 And then, write `backend: TkAgg` in the file. Now you should be set up with your virtual environment!
 
