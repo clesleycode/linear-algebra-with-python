@@ -9,7 +9,8 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958).
 	+ [0.1 Python and Pip](#01-python-and-pip)
 	+ [0.2 Libraries](#02-libraries)
 - [1.0 Introduction](#10-introduction)
-- [2.0 Vectors](#30-vectors)
+	+ [1.1 Why Learn Linear Algebra?](#11-why-learn-linear-algebra)
+- [2.0 Vectors](#20-vectors)
 	+ [2.1 What is a vector?](#21-what-is-a-vector)
 	+ [2.2 What is a vector space?](#22-what-is-a-vector-space)
 	+ [2.3 What is a subspace?](#23-what-is-a-subspace)
@@ -27,9 +28,9 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958).
 		* [3.2.6 Solving Systems of Equations](#326-solving-systems-of-equations)
 	+ [3.3 Underdetermined Matrices](#33-underdetermines-matrices)
 	+ [3.5 Kernels](#35-kernels)
-- [7.0 Final Words](#60-final-words)
-	+ [7.1 Resources](#61-resources)
-	+ [7.2 More!](#72-more)
+- [4.0 Final Words](#40-final-words)
+	+ [4.1 Resources](#41-resources)
+	+ [4.2 More!](#42-more)
 
 ## 0.0 Setup
 
@@ -84,6 +85,17 @@ Think of it as an extension of algebra into an arbitrary number of dimensions. L
 
 <b>Mathematical Modeling</b>: for example, if you want to capture behaviors (sales, engagement, etc.) in a mathematical model, you can use matrices to breakdown the samples into their own subgroups. This requires some basic matrix manipulation, such as atrix inversion, derivation, solving partial differential, or first order differential equations with matrices, for example. 
 
+### 1.2 Importance
+
+There are many reasons why the mathematics of Machine Learning is important and I’ll highlight some of them below:
+
+1. Selecting the right algorithm which includes giving considerations to accuracy, training time, model complexity, number of parameters and number of features.
+
+2. Choosing parameter settings and validation strategies.
+
+3. Identifying underfitting and overfitting by understanding the Bias-Variance tradeoff.
+
+4. Estimating the right confidence interval and uncertainty.
 
 ## 2.0 Vectors
 
@@ -139,7 +151,6 @@ A norm just refers to the magnitude of a vector, and is denoted with ||u||. With
 ``` python
 import numpy as np
 from scipy import linalg
-# norm of a vector
 v = np.array([1,2])
 linalg.norm(v)
 ```
@@ -305,3 +316,9 @@ And for p = &infin;:
 The corresponding matrix norms are:
 
 ![alt text](https://github.com/lesley2958/lin-alg/blob/master/matrix%20norms.png?raw=true "Logo Title Text 1")
+
+## 4.0 Final Words
+
+### 4.1 Resources
+
+### 4.2 Mini Courses
