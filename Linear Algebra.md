@@ -288,8 +288,7 @@ When `m > n`, the system may be <b>overdetermined</b>. In other words, there are
 
 The <b>column space</b> C(A) of a matrix A (sometimes called the range of a matrix) is the span (set of all possible linear combinations) of its column vectors.
 
-The <b>row space</b> of an m x n matrix, A, denoted by R(A) is the set of all
-linear combinations of the row vectors of A.
+The <b>row space</b> of an m x n matrix, A, denoted by R(A) is the set of all linear combinations of the row vectors of A.
 
 The <b>null space</b> of an m x n matrix, A, denoted by null(A) is the set of all solutions, x, of the equation Ax = 0<sub>m</sub>.
 
