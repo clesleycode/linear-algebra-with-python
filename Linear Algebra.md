@@ -97,6 +97,13 @@ There are many reasons why the mathematics of Machine Learning is important and 
 
 4. Estimating the right confidence interval and uncertainty.
 
+### 1.3 Notation
+
+&isin; refers to "element in". For example `2` &isin; `[1,2,3,4]` <br>
+
+&real; refers to the set of all real numbers. 
+
+
 ## 2.0 Vectors
 
 ### 2.1 What is a vector? 
@@ -122,13 +129,25 @@ A = np.array([1.0,2.0,3.0,4.0])
 
 A vector space, &Nu; is a set that contains all linear combinations of its elements. Therefore:
 
-- If vectors u and v &isin; &Nu;, then u + v &Nu;  
+- If vectors u and v &isin; &Nu;, then u + v &isin; &Nu;  
 - If u &isin; &Nu;, then &alpha; u &isin; &Nu; for any scalar &alpha;
 - There exists 0 &isin; &Nu; such that u + 0 = u for any u &isin; &Nu;
 
 ### 2.3 What is a subspace?
 
-A subspace is a subset of a vector space that is also a vector space. 
+A vector subspace is a subset of a vector space. That subspace is <b>also</b> a vector space. If W is a linear subspace of V, then dim(W) must be &le; dim(V).
+
+The easiest way to check whether it's a vector subspace is to check if it's closed under addition and scalar multiplication. Let's go over an example:
+
+Let's show that the set V = {(x, y, z) | x, y, z &isin; &real; and x*x = z*z } is <b>not</b> a subspace of &real;<sup>3</sup>.
+
+If V is actually a subspace of &real;<sup>3</sup>, that means it <b>must</b> follow all the properties listed in the beginning of this section. Recall that this is because all subspaces must also be vector spaces. 
+
+Let's evaluate the first property that stays the following:
+
+If vectors u and v &isin; V, then u + v &isin; V
+
+Now, is this true of the set we've defined above? Absolutely not. (1, 1, 1) and (1, 1, -1) are both in V, but what about their sum, (1, 2, 0)? It's not! And because it's not, it does not follow the required properties of a vector space. Therefore, we can conluse that it's also not a subspace. 
 
 ### 2.4 What is linear independence? 
 
@@ -142,7 +161,17 @@ In other words, any linear combination of the vectors that results in a zero vec
 
 ### 2.5 What is a basis? 
 
-A basis of a vector space is any linearly independent subset of it that spans the whole vector space.  In other words, each vector in the vector space can be written exactly in one way as a linear combination of the basis vectors.
+Any linearly independent set of n vectors spans an n-dimensional space. This set of vectors is referred to as the basis of &real;<sup>n</sup>. 
+
+#### 2.5.1 Under vs Overdetermined Matrices
+
+When `m < n`, the linear system is said to be <b>underdetermined</b>, e.g. there are fewer equations than unknowns. In this case, there are either no solutions or infinite solutions and a unique solution is not possible.
+
+When `m > n`, the system may be <b>overdetermined</b>. In other words, there are more equations than unknowns. They system could be inconsistent, or some of the equations could be redundant. 
+
+If some of the rows of an m x n matrix are linearly dependent, then the system is <b>reducible</b> and we get get rid of some of the rows. 
+
+Lastly, if a matrix is square and its rows are linearly independent, the system has a unique solution and is considered <b>invertible</b>.
 
 ### 2.6 What is a Norm? 
 
@@ -191,9 +220,9 @@ np.eye(4)
 
 When a matrix is multiplied by its inverse, the result is the identity matrix. It's important to note that only square matrices have inverses.
 
-### 3.2 Matrix Operations
+## 4.0 Matrix Operations
 
-#### 3.2.1 Addition
+### 4.1 Addition
 
 Matrix addition works very similarlty to normal addition. You simply add the corresponding spots together. 
 
@@ -210,7 +239,7 @@ Visually, this looks like:
 
 ![alt text](https://github.com/lesley2958/lin-alg/blob/master/vector%20addition.png?raw=true "Logo Title Text 1")
 
-#### 3.2.2 Multiplication
+### 4.2 Multiplication
 
 The dot product is an algebraic operation that takes two coordinate vectors of equal size and returns a single number. The result is calculated by multiplying corresponding entries and adding up those products. 
 
@@ -225,7 +254,7 @@ Or, simply, you can do:
 matrix_prod = matrix1 * matrix2
 ```
 
-#### 3.2.3 Trace and Determinant
+### 4.3 Trace and Determinant
 
 The trace of a matrix A is the sum of its diagonal elements. It's important because it's an invariant of a matrix under change of basis and it defines a matrix norm. 
 
@@ -238,9 +267,9 @@ In python, you can use the following function:
 ``` python
 det = np.linalg.det(matrix1)
 ```
-Note that an n×n matrix Ais invertible &iff; det(A) &ne; 0.
+Note that an n×n matrix A is invertible &iff; det(A) &ne; 0.
 
-#### 3.2.4 Inverse
+### 4.4 Inverse
 
 The matrix A is invertible if there exists a matrix A<sub>-1</sub> such that
 
@@ -254,7 +283,7 @@ We can get the inverse matrix with numpy:
 inverse = np.linalg.inv(matrix1)
 ```
 
-#### 3.2.5 Eigenvalues & Eigenvectors
+### 4.5 Eigenvalues & Eigenvectors
 
 Let A be an n x n matrix. The number &lambda; is an eigenvalue of A if there exists a non-zero vector C such that
 
@@ -268,23 +297,62 @@ eigvals = np.linalg.eigvals(matrix)
 
 Note that eigenvectors do not change direction in the transformation of the matrix.
 
-#### 3.2.6 Solving Systems of Equations
+### 4.6 Solving Systems of Equations
 
 Consider a set of m linear equations in n unknowns:
 
-We can re-write the system:
+![alt text](https://github.com/ByteAcademyCo/stats-programmers/blob/master/system1.png?raw=true "Logo Title Text 1")
+
+We can let:
+
+![alt text](https://github.com/ByteAcademyCo/stats-programmers/blob/master/system2.png?raw=true "Logo Title Text 1")
+
+And re-write the system: 
+
 ```
 Ax = b
 ```
-This reduces the problem to a matrix equation, and now solving the system amounts to finding A<sub>−1</sub>.
+This reduces the problem to a matrix equation and now we can solve the system to find A<sup>−1</sup>.
 
-### 3.3 Under vs Overdetermined Matrices
+#### 4.6.1 Systems of Equations with Python
+
+Using numpy, we can solve systems of equations in Python:
+
+``` python 
+import numpy as np
+```
+
+Each equation in a system can be represented with matrices. For example, if we have the equation `3x - 9y = -42`, it can be represented as `[3, -9]` and `[-42]`. If we add another equation to the mix, for example,  `2x + 4y = 2`, we can merge it with the previous equation to get `[[3, -9], [2, 4]]` and `[-42, 2]`. Now let's solve for the x and y values.
+
+Now, let's put these equations into numpy arrays:
+
+``` python
+A = np.array([ [3,-9], [2,4] ])
+b = np.array([-42,2])
+```
+
+Now, we can use the `linalg.solve()` function to solve the x and y values. Note that these values will be
+```
+z = np.linalg.solve(A,b)
+```
+
+This gets us: 
+
+``` 
+array([-5.,  3.])
+```
+which means `x = -5` and `y = 3`. 
+
+
+## 5.0 Matrix Types
+
+### 5.1 Under vs Overdetermined Matrices
 
 When `m < n`, the linear system is said to be <b>underdetermined</b>, e.g. there are fewer equations than unknowns. In this case, there are either no solutions or infinite solutions and a unique solution is not possible.
 
 When `m > n`, the system may be <b>overdetermined</b>. In other words, there are more equations than unknowns. They system could be inconsistent, or some of the equations could be redundant. 
 
-### 3.4 Row, Column, and Null Space 
+### 5.2 Row, Column, and Null Space 
 
 The <b>column space</b> C(A) of a matrix A (sometimes called the range of a matrix) is the span (set of all possible linear combinations) of its column vectors.
 
@@ -292,15 +360,21 @@ The <b>row space</b> of an m x n matrix, A, denoted by R(A) is the set of all li
 
 The <b>null space</b> of an m x n matrix, A, denoted by null(A) is the set of all solutions, x, of the equation Ax = 0<sub>m</sub>.
 
-### 3.5 Rank
+### 5.3 Rank
 
 The rank of a matrix A is the dimension of its column space - and - the dimension of its row space. These are equal for any matrix. Rank can be thought of as a measure of non-degeneracy of a system of linear equations, in that it is the dimension of the image of the linear transformation determined by A.
 
-### 3.6 Kernels
+### 5.4 Kernels & Images
+
+#### 5.4.1 Images 
+
+The image of a function consists of all the values the function takes in its codomain.
+
+#### 5.4.2 Kernels
 
 The kernel of a matrix A is the dimension of the space mapped to zero under the linear transformation that A represents. The dimension of the kernel of a linear transformation is called the nullity.
 
-### 3.7 Matrix Norms
+### 5.5 Matrix Norms
 
 We can extend the notion of a norm of a vector to a norm of a matrix. Matrix norms are used in determining the condition of a matrix. There are many matrix norms, but three of the most common are so called ‘p’ norms, and they are based on p-norms of vectors.
 
@@ -317,6 +391,8 @@ The corresponding matrix norms are:
 ![alt text](https://github.com/lesley2958/lin-alg/blob/master/matrix%20norms.png?raw=true "Logo Title Text 1")
 
 ## 4.0 Final Words
+
+By now, it should be a bit more obvious why linear algebra is crucial to the field of machine learning. 
 
 ### 4.1 Resources
 
