@@ -1,8 +1,0 @@
-Python 101: Data Science Preparation
-
-Day 3, 6:00pm-9:00pm:
-	Sections 1.0 - 4.0:
-		- Intro to Linear Algebra
-		- Vectors
-		- Matrices
-		- Scipy & Numpy
