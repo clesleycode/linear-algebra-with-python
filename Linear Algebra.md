@@ -135,6 +135,7 @@ import numpy as np
 A = np.array([2.0, 3.0, 4.0])
 ```
 
+
 If we call the method `norm()` on this array, we get the same value, `6.16`.
 
 ### 2.1 What is a vector space?
