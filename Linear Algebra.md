@@ -10,27 +10,43 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958).
 	+ [0.2 Libraries](#02-libraries)
 - [1.0 Introduction](#10-introduction)
 	+ [1.1 Why Learn Linear Algebra?](#11-why-learn-linear-algebra)
+	+ [1.2 Scalars & Vectors](#12-scalars--vectors)
+	+ [1.3 Importance](#13-importance)
+	+ [1.4 Notation](#14-notation)
+	+ [1.5 Challenge](#15-challenge)
 - [2.0 Vectors](#20-vectors)
-	+ [2.1 What is a vector?](#21-what-is-a-vector)
-	+ [2.2 What is a vector space?](#22-what-is-a-vector-space)
-	+ [2.3 What is a subspace?](#23-what-is-a-subspace)
-	+ [2.4 What is linear independence?](#24-what-is-linear-independence)
-	+ [2.5 What is a basis?](#25-what-is-a-basis)
-	+ [2.6 What is a Norm?](#26-what-is-a-norm)
+		* [2.0.1 Challenge](#201-challenge)
+	+ [2.1 What is a vector space?](#21-what-is-a-vector-space)
+	+ [2.2 What is a subspace?](#22-what-is-a-subspace)
+	+ [2.3 What is linear independence?](#23-what-is-linear-independence)
+	+ [2.4 What is a basis?](#24-what-is-a-basis)
+	+ [2.5 What is a Norm?](#25-what-is-a-norm)
+		* [2.5.1 Challenge](#251-challenge)
 - [3.0 Matrices](#30-matrices)
+		* [3.0.1 Challenge](#301-challenge)
 	+ [3.1 Identity Matrix](#31-identity-matrix)
-	+ [3.2 Matrix Operations](#32-matrix-operations)
-		* [3.2.1 Addition](#321-addition)
-		* [3.2.2 Multiplication](#322-multiplication)
-		* [3.2.3 Determinant](#323-determinant)
-		* [3.2.4 Inverse](#324-inverse)
-		* [3.2.5 Eigenvalues](#325-eigenvalues)
-		* [3.2.6 Solving Systems of Equations](#326-solving-systems-of-equations)
-	+ [3.3 Underdetermined Matrices](#33-underdetermines-matrices)
-	+ [3.5 Kernels](#35-kernels)
-- [4.0 Final Words](#40-final-words)
-	+ [4.1 Resources](#41-resources)
-	+ [4.2 More!](#42-more)
+		* [3.1.1 Challenge](#311-challenge)
+	+ [3.2 Inverse Matrices](#32-inverse-matrices)
+		* [3.2.1 Challenge](#321-challenge)
+- [4.0 Matrix Operations](#40-matrix-operations)
+	+ [4.1 Addition](#41-addition)
+	+ [4.2 Multiplication](#42-multiplication)
+	+ [4.3 Trace and Determinant](#43-trace-and-determinant)
+	+ [4.4 Eigenvalues & Eigenvectors](#44-eigenvalues--eigenvectors)
+	+ [4.5 Solving Systems of Equations](#45-solving-systems-of-equations)
+		* [4.5.1 Solving Systems of Equations with Python](#451-solving-systems-of-equations-with-python)
+- [5.0 Matrix Types](#50-matrix-types)
+	+ [5.1 Underdetermined Matrices](#51-underdetermines-matrices)
+	+ [5.2 Row, Column, and Null Space](#52-row-column-null-space)
+	+ [5.3 Rank](#53-rank)
+	+ [5.4 Kernels & Images](#54-kernels--images)
+		* [5.4.1 Images](#541-images)
+		* [5.4.2 Kernels](#542-kernels)
+	+ [5.5 Matrix Norms](#55-matrix-norms)
+		* [5.5.1 Challenge](#551-challenge)
+- [6.0 Final Words](#60-final-words)
+	+ [6.1 Resources](#61-resources)
+
 
 ## 0.0 Setup
 
@@ -78,6 +94,7 @@ Cool, now we're ready to start!
 Linear Algebra is a branch of mathematics that allows you to concisely describe coordinates and interactions of planes in higher dimensions, as well as perform operations on them. 
 
 Think of it as an extension of algebra into an arbitrary number of dimensions. Linear Algebra is about working on linear systems of equations. Rather than working with scalars, we work with matrices and vectors. This is particularly import to the study of computer science because vectors and matrices can be used to represent data of all forms - images, text, and of course, numerical values.
+
 ### 1.1 Why Learn Linear Algebra?
 
 <b>Machine Learning</b>: A lot of Machine Learning concepts are tied to linear algebra concepts. Some basic examples, PCA - eigenvalue, regression - matrix multiplication. As most ML techniques deal with high dimensional data, they are often times represented as matrices.
@@ -108,6 +125,12 @@ There are many reasons why the mathematics of Machine Learning is important and 
 
 &real; refers to the set of all real numbers. 
 
+### 1.5 Challenge
+
+Using the [distance formula](https://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.norm.html) and [trigonometry functions](https://docs.python.org/3/library/math.html) in Python, calculate the magnitude and direction of a line with the two coordinates, `(5,3)` and `(1,1)`.
+
+For more information on [distance formula](http://www.purplemath.com/modules/distform.htm) and [trigonometry functions](http://www2.clarku.edu/~djoyce/trig/formulas.html)
+
 
 ## 2.0 Vectors
 
@@ -135,28 +158,32 @@ import numpy as np
 A = np.array([2.0, 3.0, 4.0])
 ```
 
+#### 2.0.1 Challenge
+
+Write code for two vectors with five values of your choice. The first should be written as a regular one-dimensional list. The other should be be written with numpy. 
+
 
 If we call the method `norm()` on this array, we get the same value, `6.16`.
 
 ### 2.1 What is a vector space?
 
-A vector space V is a set that contains all linear combinations of its elements. In other words, if you have a set A, the space vector V is a set of all combinations of the elements in the original set A. 
+A vector space V is a set that contains all linear combinations of its elements. In other words, if you have a set A, the space vector V includes all combinations of the elements in A. 
 
 With that said, there are three properties that <b>every</b> vector space must follow:
 
 1. Additive Closure: If vectors u and v &isin; V, then u + v &isin; V <br>
-When we stated earlier that the vector space has all combinations of the elements in set A, one of the operations we meant by 'combinations' was <i>vector</i> addition. For example if we have two vectors in set A, let's say (4, 5) and (3, 1), then the vector space of A must have those two vectors, as well as the vector (4+3, 5+1), or `(7, 6)`. This has to be true for any two vectors in set A. 
+When we earlier stated that the vector space has all combinations of the elements in set A, one of the operations we meant by 'combinations' was <i>vector</i> addition. For example if we have two vectors in set A, let's say (4, 5) and (3, 1), then the vector space of A must have those two vectors, as well as the vector (4+3, 5+1), or `(7, 6)`. This has to be true for any two vectors in set A. 
 
-2. Scalar Closure: If u &isin; V, then &alpha; u must &isin; &Nu; for any scalar &alpha; <br>
+2. Scalar Closure: If u &isin; V, then &alpha; &middot; u must &isin; &Nu; for any scalar &alpha; <br>
 Recall that a scalar is a magnitude value with no direction, such as 5. For a vector space to be a vector space, that means for every vector in the original set A, that vector multiplied by any number (or constant or scalar) must be in the vector space V. 
 
-3. Additive Identity: There exists a 0 &isin; V such that u + 0 = u for any u &isin; V
+3. Additive Identity: There exists a &middot; 0 &isin; V such that u + 0 = u for any u &isin; V <br>
 In other words, the vector space of set A must contain the zero vector.
 
-4. Additive Associativity: If u, v, w &isin; V, then u + (v + w) = (u + v) + w
+4. Additive Associativity: If u, v, w &isin; V, then u + (v + w) = (u + v) + w <br>
 Regardless of the order in which you add multiple vectors, their results should be the same
 
-5. Additive Inverse: If u &isin; V, then there exists a vector −u &isin; V so that u + (−u) = 0.
+5. Additive Inverse: If u &isin; V, then there exists a vector −u &isin; V so that u + (−u) = 0. <br>
 For example, if the vector (2, 3) &isin; V, then its additive inverse is (-2, -3) and must also be an element of the vector space V. 
 
 
@@ -168,7 +195,7 @@ The dimension of a vector space V is the cardinality. It's usually denoted as su
 
 ### 2.2 What is a subspace?
 
-A vector subspace is a subset of a vector space. That subspace is <b>also</b> a vector space. If W is a linear subspace of V, then dim(W) must be &le; dim(V).
+A vector subspace is a subset of a vector space. That subspace is <b>also</b> a vector space, so it follows all the rules we reviewed above. It's also important to note that if W is a linear subspace of V, then the dimension of W must be &le; the dimension of V.
 
 The easiest way to check whether it's a vector subspace is to check if it's closed under addition and scalar multiplication. Let's go over an example:
 
@@ -181,6 +208,16 @@ Let's evaluate the first property that stays the following:
 If vectors u and v &isin; V, then u + v &isin; V
 
 Now, is this true of the set we've defined above? Absolutely not. (1, 1, 1) and (1, 1, -1) are both in V, but what about their sum, (1, 2, 0)? It's not! And because it's not, it does not follow the required properties of a vector space. Therefore, we can conluse that it's also not a subspace. 
+
+#### 2.2.1 Challenge
+
+1. Write the representation of &real;<sup>2</sup> as a list comprehension - use ranges between -10 and 10 for all values of x and y. 
+
+2. Write the representation of &real;<sup>3</sup> as a list comprehension - use ranges between -10 and 10 for all values of x, y, and z.  
+
+3. Write a list comprehension that represents the the set V = {(x, y, z) | x, y, z &isin; &real; and x+y = 11}. Use ranges between -10 and 10 for all values of x, y, and z. 
+
+4. Choose three values of x, y, and z that show the set V = {(x, y, z) | x, y, z &isin; &real; and x+y = 11} is <b>not</b> a subspace of &real;<sup>3</sup>. These values should represent a tuple that <i>would</i> be in vector V had it been a vector subspace. Each value should also be between -10 and 10. 
 
 ### 2.3 What is Linear Dependence? 
 
@@ -227,6 +264,10 @@ The actual formula looks like:
 
 ![alt text](https://github.com/lesley2958/lin-alg/blob/master/norm.png?raw=true "Logo Title Text 1")
 
+#### 2.5.1 Challenge
+
+Find the norm of the vector `[3, 9, 5, 4]` using the actual formula above. You should write a function `find_norm(v1)` that returns this value as a float and then call it on the provided variable `n1`. You should not use `scipy`, but you may use the `math` module. 
+
 ## 3.0 Matrices
 
 A Matrix is a 2D array that stores real or complex numbers. You can think of them as multiple vectors in an array! You can use numpy to create matrices:
@@ -243,21 +284,11 @@ matrix2 = np.matrix(
 )
 ```
 
-### 3.1 Inverse
+#### 3.0.1 Challenge
 
-The matrix A is invertible if there exists a matrix A<sub>-1</sub> such that
+Using `numpy`, create a 3 x 5 matrix with values of your choice. 
 
-A<sub>-1</sub>A = I and AA<sub>-1</sub> = I
-
-Multiplying inverse matrix is like the division; it’s simply the reciprocal function of multiplication. Let’s say here is a square matrix A, then multiplying its inversion gives the identity matrix I.
-
-We can get the inverse matrix with numpy: 
-
-``` python
-inverse = np.linalg.inv(matrix1)
-```
-
-### 3.2 Identity Matrix
+### 3.1 Identity Matrix
 
 A Diagonal Matrix is an n x n matrix with 1s on the diagonal from the top left to the bottom right, such as 
 
@@ -274,8 +305,48 @@ np.eye(4)
 
 When a matrix is multiplied by its inverse, the result is the identity matrix. It's important to note that only square matrices have inverses!
 
+#### 3.1.1 Challenge
+
+``` python
+A =  [[1 2]
+      [3 4]]
+      
+B = [[-2.   1. ]
+     [ 1.5 -0.5]]
+     
+C = [[1 2 3]
+     [4 5 6]]
+````
+
+1. Given matrix A and B,  mutiply AB - call this `mat1`. Mutiply BA - call this `mat2`.  Are these matrix inverses?
+
+2. Given matrix C, create an identity matrix - call it `id1`  to multiply  C*id1- call this `mat3`.  
+
+3. Given matrix C, create an identity matrix - call it `id2`  to multiply  id2*C- call this `mat4`.  
+
+
+### 3.2 Inverse Matrices
+
+The matrix A is invertible if there exists a matrix A<sub>-1</sub> such that
+
+A<sub>-1</sub>A = I and AA<sub>-1</sub> = I
+
+Multiplying inverse matrix is like the division; it’s simply the reciprocal function of multiplication. Let’s say here is a square matrix A, then multiplying its inversion gives the identity matrix I.
+
+We can get the inverse matrix with numpy: 
+
+``` python
+inverse = np.linalg.inv(matrix1)
+```
+
+#### 3.2.1 Challenge
+
+Write a function `matrix_inverse(matrix_A)` that outputs the inverse matrix. 
+
 
 ## 4.0 Matrix Operations
+
+What makes matrices particularly useful is the fact that we can perform operations on them. While it won't be necessarily intuitive why these operations are important right now, it will become obvious in later content.
 
 ### 4.1 Addition
 
@@ -293,6 +364,13 @@ matrix([[-1,  6],
 Visually, this a vector addition looks something like:
 
 ![alt text](https://github.com/lesley2958/lin-alg/blob/master/vector%20addition.png?raw=true "Logo Title Text 1")
+
+#### 4.1.1 Challenge
+
+Write a function `matrix_add(matrix_A, matrix_B)` that performs matrix addition if the dimensionality is valid. Note that the dimensionality is only valid if input matrix A and input matrix B are of the same dimension in both their row and column lengths. 
+
+For example, you can add a 3x5 matrix with a 3x5 matrix, but you cannot add a 3x5 matrix with a 3x1 matrix. If the dimensionality is not valid, print this error message "Cannot perform matrix addition between a-by-b matrix and c-by-d matrix", where you substitute a, b with the dimension of the input matrix A, and c,d with the dimension of the input matrix B.
+
 
 ### 4.2 Multiplication
 
@@ -439,10 +517,36 @@ The corresponding matrix norms are:
 
 ![alt text](https://github.com/lesley2958/lin-alg/blob/master/matrix%20norms.png?raw=true "Logo Title Text 1")
 
+#### 5.5.1 Numpy
+
+**numpy.linalg** provides the norm function to calculate norm of vectors and matrices. Consider the following example calculating the pnorm of matrix with p = &infin;.
+
+```python
+import numpy as np
+mat = np.array([1,2],[2,1])
+
+# Set 'ord' parameter to infinity as p = infinity
+np.linalg.norm(mat,ord=np.inf)
+```
+
+#### 5.5.2 Challenge
+
+Create a function called **norms** which meets the following requirements: 
++ It must take a list of numbers as array (eg: [[1,1,4],[3,0,-1],[1,1,2]])
++ Calculate the matrix norms with p = 1,2 and &infin;, Store them in a dictionary object as follows
+{'p1':p1 norm value,'p2':p2 norm value,'pinf':pinf norm value}
++ Finally, return this dictionary object
+
+
 ## 6.0 Final Words
 
-By now, it should be a bit more obvious why linear algebra is crucial to the field of machine learning. 
+By now, hopefully it's a bit more obvious why linear algebra is crucial to the field of machine learning. Though this is not meant to be a comprehensive guide, it should serve as a thorough introduction to linear algebra.
+
 
 ### 6.1 Resources
 
-### 6.2 Mini Courses
+In case you found this topic particularly useful, I've included some wonderful resources below to continue your knowledge. 
+
+[A Course in Linear Algebra](https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/index.htm) <br>
+[Google Eigenvectors](https://www.rose-hulman.edu/~bryan/googleFinalVersionFixed.pdf) 
+
