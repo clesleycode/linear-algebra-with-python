@@ -412,17 +412,30 @@ Which gets you `-7.99999` or about `-8`. Note that an n×n matrix A is invertibl
 
 ### 4.4 Eigenvalues & Eigenvectors
 
-Let A be an n x n matrix. The number &lambda; is an eigenvalue of A if there exists a non-zero vector C such that
+Let A be an `n x n` matrix. The number &lambda; is an eigenvalue of `A` if there exists a non-zero vector `C` such that
 
 Av = &lambda;v
 
-In this case, vector v is called an eigenvector of A corresponding to &lambda;. You can use numpy to calculate the eigenvectors of a matrix: 
+In this case, vector `v` is called an eigenvector of `A` corresponding to &lambda;. You can use numpy to calculate the eigenvalues and eigenvectors of a matrix: 
 
 ``` python
-eigvals = np.linalg.eigvals(matrix)
+eigenvecs, eigvals = np.linalg.eigvals(matrix)
 ```
 
-Note that eigenvectors do not change direction in the transformation of the matrix.
+It's important to note that eigenvectors do not change direction in the transformation of the matrix.
+
+#### 4.4.1 Challenge
+
+1. Given the matrix below, find the eigenvalues (name these variable `eig1` and `eig2`). For each eigenvalue find its eigenvector (call these variables `eigenvector1` and `eigenvector2`).
+
+``` 
+    1    4
+    3    5
+```
+* Don't forget to create the matrix above.
+
+2. Consider the rotation matrix for two dimensions. (for example - we see that for zero degrees this matrix is just a 2-by-2 identity matrix.) Find the eigenvalues for a 45 degree rotation (call these variables `eig_rot1` and `eig_rot2`).  For each eigenvalue find its eigenvalue (call these variables `eigenvector_rot1` and `eigenvector_rot2`).
+
 
 ### 4.5 Solving Systems of Equations
 
