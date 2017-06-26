@@ -268,6 +268,7 @@ The actual formula looks like:
 
 Find the norm of the vector `[3, 9, 5, 4]` using the actual formula above. You should write a function `find_norm(v1)` that returns this value as a float and then call it on the provided variable `n1`. You should not use `scipy`, but you may use the `math` module. 
 
+
 ## 3.0 Matrices
 
 A Matrix is a 2D array that stores real or complex numbers. You can think of them as multiple vectors in an array! You can use numpy to create matrices:
@@ -316,7 +317,7 @@ B = [[-2.   1. ]
      
 C = [[1 2 3]
      [4 5 6]]
-````
+```
 
 1. Given matrix A and B,  mutiply AB - call this `mat1`. Mutiply BA - call this `mat2`.  Are these matrix inverses?
 
@@ -356,6 +357,7 @@ Matrix addition works very similarlty to normal addition. You simply add the cor
 matrix_sum = matrix1 + matrix2
 ```
 And you'll get
+
 ``` 
 matrix([[-1,  6],
         [ 3, -2]])
@@ -370,7 +372,6 @@ Visually, this a vector addition looks something like:
 Write a function `matrix_add(matrix_A, matrix_B)` that performs matrix addition if the dimensionality is valid. Note that the dimensionality is only valid if input matrix A and input matrix B are of the same dimension in both their row and column lengths. 
 
 For example, you can add a 3x5 matrix with a 3x5 matrix, but you cannot add a 3x5 matrix with a 3x1 matrix. If the dimensionality is not valid, print this error message "Cannot perform matrix addition between a-by-b matrix and c-by-d matrix", where you substitute a, b with the dimension of the input matrix A, and c,d with the dimension of the input matrix B.
-
 
 ### 4.2 Multiplication
 
@@ -396,6 +397,7 @@ In Python, this can be done with the `numpy` module:
 ``` python
 np.trace(matrix1)
 ```
+
 which in this case is just `0`. 
 
 The determinant of a matrix is defined to be the alternating sum of permutations of the elements of a matrix. The formula is as follows:
@@ -407,8 +409,10 @@ In python, you can use the following function:
 ``` python
 det = np.linalg.det(matrix1)
 ```
+
 Which gets you `-7.99999` or about `-8`. Note that an n×n matrix A is invertible &iff; det(A) &ne; 0.
 
+#### 4.3.1 Ordinary Least Squares
 
 ### 4.4 Eigenvalues & Eigenvectors
 
