@@ -50,7 +50,7 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958).
 
 ## 0.0 Setup
 
-This guide was written in Python 3.5.
+This guide was written in Python 3.6.
 
 
 ### 0.1 Python and Pip
@@ -63,8 +63,8 @@ Download [Python](https://www.python.org/downloads/) and [Pip](https://pip.pypa.
 We'll be working with numpy and scipy, so make sure to install them. Pull up your terminal and insert the following: 
 
 ```
-pip3 install scipy
-pip3 install numpy
+pip3 install scipy==0.19.0
+pip3 install numpy==1.12.1
 ```
 
 ### 0.3 Virtual Environment
